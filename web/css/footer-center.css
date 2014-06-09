@@ -1,0 +1,214 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-6-4, 16:40:25
+    Author     : coolwind
+*/
+.hr-special{
+    margin-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-color: #bbb;
+    border-style: dashed;
+    border-top-width: 1px; 
+}
+
+.footer-center{
+    display: table;
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.item-center{
+    display: table;
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+html,body{
+    overflow-x: hidden;
+}
+body{
+    padding-top: 70px;
+}
+
+footer{
+    padding-top: 30px 0;
+}
+
+p.jumbotron-title{
+    font-size: 42px;
+}
+
+li.active{
+    color: #fff
+}
+
+.user{
+    font-size: 20px
+}
+
+.reg{
+    margin-left:4px;
+    padding-left: 0px;
+}
+
+.form-register{
+    padding-top:30px;
+    padding-bottom: 30px;
+    border-style: solid;
+    border-color: #adadad;
+    border-radius: 10px;
+    border-width: 1px
+}
+
+.word-center-right{
+    text-align: right;
+}
+
+.form-register-item{
+    margin-top: 15px;
+
+}
+
+.image-item{
+    padding-top:70px;
+    padding-right: 70px;
+}
+
+.register-body{
+    padding-left: 90px;
+    padding-right: 70px; 
+}
+
+.form-title{
+    border-style: none;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.form-line{
+    margin-top: 15px;
+}
+
+.form-writer{
+    background-color: #dcdcdc
+}
+
+.form-off{
+    margin-left: 40px
+}
+
+.list-title{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.list-border{
+    border-style: solid;
+    border-top-style:none;
+    border-width: 2px;
+    border-color:#eee;
+}
+
+.list-content{
+    margin-left: 0px;
+    margin-right: 0px; 
+}
+
+.editor-height{
+    height: 300px;
+}
+
+.comment-height{
+    height: 170px;
+}
+
+.comment-footer{
+    font-size: 15px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 1px;
+}
+
+.comment-content{
+    font-size: 17px;
+    margin-left: 30px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.comment-tiltle{
+    font-size: 15px;
+    margin-bottom: 1px;
+}
+
+.comment-item{
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    background-color: #eee;
+}
+
+.comment-group{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 4px;
+    margin: 0px;
+    background-color: #dcdcdc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-top: 20px;
+}
+
+.comment-submit{
+    float:right;
+    margin-right: 0px;
+}
+
+.blog-item{
+    background-color: #eee;
+    padding: 20px;
+}
+
+.manage-group{
+    background-color: #dcdcdc;
+    padding-top: 17px;
+    padding-bottom: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border: rgba(15,15,15,0);
+    margin: 1px;
+    text-align: center;
+}
+
+.manage-item{
+    background-color: #eee;
+    padding-top: 12px;
+    padding-bottom: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border: rgba(15,15,15,0);
+    margin: 1px;
+    text-align: center;
+}
+.manage-item-sub{
+    background-color: #eee;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border: rgba(15,15,15,0);
+    margin: 1px;
+    text-align: center;
+}

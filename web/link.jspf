@@ -1,0 +1,37 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<form name="to_quit" action="Index" method="post">
+    <input type="hidden" name="action" value="logout">
+</form>
+<form name="to_top1" action="Index" method="post">
+    <input type="hidden" name="action" value="hot_top">
+    <input type="hidden" name="hot_top" value="top1">
+</form>
+<form name="to_mainpage" action="Index" method="post">
+    <input type="hidden" name="action" value="change">
+    <input type="hidden" name="change" value="to_mainpage">
+</form>
+<form name="to_publicblog" action="Index" method="post">
+    <input type="hidden" name="action" value="change">
+    <input type="hidden" name="change" value="to_publicblog">
+</form>
+<form name="to_myblog" action="Index" method="post">
+    <input type="hidden" name="action" value="change">
+    <input type="hidden" name="change" value="to_myblog">
+    <%--<input type="hidden" name="username" value="<%=uid%>">--%>
+</form>
+<form name="to_register" method="post" action="Index">
+    <input name="action" type="hidden" value="to_registration">
+</form>
+<form name="to_blog_create" method="post" action="Index">
+    <input name="action" type="hidden" value="to_blog_create">
+</form>
+<form name="to_modify_password" method="post" action="Index">
+    <input name="action" type="hidden" value="to_modify_password">
+</form>
+<form name="to_modify_user" method="post" action="Index">
+    <input name="action" type="hidden" value="to_modify_user">
+</form>
+<form name="to_manage_blog" method="post" action="Index">
+    <input name="action" type="hidden" value="to_manage_blog"> 
+</form>

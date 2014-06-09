@@ -1,0 +1,84 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container">
+    <div class="row row-offcanvas">
+        <div class="col-10  col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1  form-register">
+            <form class="form-group " action="Index" method="post">
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-2 col-lg-2 col-xs-2">
+                            <label class="form-control form-title">标题：</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-6 col-lg-6 col-xs-6">
+                            <input name="blog_title" class="form-control form-off" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-2 col-lg-2 col-xs-2">
+                            <label class="form-control form-title">标签：</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-6 col-lg-6 col-xs-6 form-off">
+                            <input type="text" class="form-control" name="label">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-2 col-lg-2 col-xs-2">
+                            <label class="form-control form-title">权限：</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-6 col-lg-6 col-xs-6 form-off">
+                            <div class="radio-inline">
+                                <input name="previlige" type="radio"  class="radio-inline" value="0" checked> 公开
+                            </div>
+                            <div class="radio-inline">
+                                <input name="previlige" type="radio" class="radio-inline" value="1" unchecked>不公开
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-2 col-lg-2 col-xs-2">
+                            <label class="form-control form-title">博客内容：</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-12 col-lg-12 col-xs-12 form-off">
+                            <script type="text/plain" id="myEditor" class="myEditor form-control editor-height"></script>
+                            <script type="text/javascript">
+                                var editor = UM.getEditor('myEditor');
+                            </script> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="Row">
+                        <div class="col-12 col-lg-12 col-xs-12 form-line">
+                            <input type="hidden" name="action" value="blog_submit">
+                            <button class="btn btn-success" type="submit">提交博客</button>
+                            <button class="btn btn-default" type="reset" onclick="javascript:editor.execCommand('cleardoc');">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

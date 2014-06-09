@@ -1,0 +1,14 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="row list-border list-content">
+    <%for (int i = 0; i < 9; i ++){%>
+    <div class="col-6 col-sm-6 col-lg-4">
+        <h2>coowind</h2>
+        <li>复仇者之死</li>
+        <li>寒风剑海的忧郁</li>
+        <li>寒风剑海的消失</li>
+        <li>寒风剑海的困惑</ii>
+        <p><a class="btn btn-default" href="#" role="button">查看更多 &raquo;</a></p>
+    </div><!--/span-->
+    <%}%>
+</div><!--/row-->

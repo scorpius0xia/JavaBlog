@@ -1,0 +1,39 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container register-body">
+    <div class="row row-offcanvas row-offcanvas-right ">
+        <div class="col-xs-7 col-sm-4 form-register">
+            <form class="form-group" action="Index" method="post">
+                <div class="Row ">
+                    <div class="col-11 col-lg-11 col-xs-11 form-register-item">
+                        <label for="username">用户名:</label>
+                        <input name="username" id="username" type="text" class="form-control">
+                    </div>
+                    <div class="col-11 col-lg-11 col-xs-11 form-register-item">
+                        <label for="password">密码:</label>
+                        <input name="password" id="password" type="text" class="form-control">
+                    </div>
+                    <div class="col-11 col-lg-11 col-xs-11 form-register-item">
+                        <label for="repeat">密码确认:</label>
+                        <input name="repeat" id="repeat" type="text" class="form-control">
+                    </div>
+                    <div class="col-11 col-lg-11 col-xs-11 form-register-item">
+                        <label for="email">电子邮箱：</label>
+                        <input name="email" id="email" type="text" class="form-control">
+                    </div>
+                     <div class="col-12 col-lg-12 col-xs-12 form-register-item">
+                         <input name="agree" id="agree" type="checkbox">我已阅读并同意<a href="">《Java Blog的服务条款》</a></input>
+                    </div>
+                    <input type="hidden" name="action" value="registration_detail">
+                    <div class="col-11 col-lg-11 col-xs-11 form-register-item">
+                        <button class="btn btn-block btn-default btn-success">注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-11 col-sm-8 image-item">
+                <img src="image/robot.jpg">
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<ul class="nav navbar-nav navbar-right btn-group">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle btn user" data-toggle="dropdown"><%=username%><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="javascript:to_blog_create.submit()">写日志</a></li>
+            <li><a href="javascript:to_manage_blog.submit()">管理日志</a></li>
+            <li class="divider"></li>
+            <li><a href="javascript:to_modify_user.submit()">个人资料</a></li>
+            <li><a href="javascript:to_modify_password.submit()">修改密码</a></li>
+        </ul>
+    </li>
+    <li><a href="javascript:to_quit.submit()" class="btn">退出</a></li>
+</ul>

@@ -1,0 +1,21 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <p class="jumbotron-title">欢迎来到coolwind的Java Blog</p>
+                <p>想做点什么把自己找回来，然而还是不停对着电脑屏幕发呆，抬头朝窗外看云彩变幻，问自己是否还有爱，每天不停的做着无限循环，然而幸福还在遥不可及的另一端，不要放弃希望，只要有梦想，爱永远存在！</p>
+            </div>
+            <li class="list-group-item list-title">人气博主</li>
+            <%@include file="first_listview.jspf" %>
+        </div><!--/span-->
+        
+        <%@include file="blog_menu.jspf" %>
+    </div><!--/row-->
+</div>

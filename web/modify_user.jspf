@@ -1,0 +1,70 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container">
+    <div class="row row-offcanvas">
+        <div class="col-6 col-lg-6 col-lg-offset-3 col-xs-6 col-xs-offset-3 form-register">
+            <form action="Index" method="post" class="form-group">
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1 form-line">
+                    <div class="Row">
+                        <div class="col-4 col-lg-4 col-xs-4">
+                            <label class="form-control form-title">用户名：</label>
+                        </div>
+                        <div class="col-8 col-lg-8 col-xs-8">
+                            <input name="username" type="text" class="form-control" value="<%=username%>" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1 form-line">
+                    <div class="Row">
+                        <div class="col-4 col-lg-4 col-xs-4">
+                            <label class="form-control form-title">性别：</label>
+                        </div>
+                        <div class="col-8 col-lg-8 col-xs-8">
+                            <div class="radio-inline">
+                                <input name="gender" type="radio"  class="radio-inline" checked> 男
+                            </div>
+                            <div class="radio-inline">
+                                <input name="gender" type="radio" class="radio-inline" unchecked>女
+                            </div>
+                            <div class="radio-inline">
+                                <input name="gender" type="radio" class="radio-inline" unchecked>其他
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1 form-line">
+                    <div class="Row">
+                        <div class="col-4 col-lg-4 col-xs-4">
+                            <label class="form-control form-title">邮件地址：</label>
+                        </div>
+                        <div class="col-8 col-lg-8 col-xs-8">
+                            <input name="email" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1 form-line">
+                    <div class="Row">
+                        <div class="col-4 col-lg-4 col-xs-4">
+                            <label class="form-control form-title">个人主页：</label>
+                        </div>
+                        <div class="col-8 col-lg-8 col-xs-8">
+                            <input name="webpage" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1 form-line">
+                    <div class="Row">
+                        <div class="col-4 col-lg-4 col-lg-offset-2 col-xs-4 col-xs-offset-2">
+                            <input type="hidden" name="action" value="modify_user">
+                            <button type="submit" class="btn btn-success btn-block">保存修改</button>
+                        </div>
+                        <div class="col-4 col-lg-4 col-lg-offset-2 col-xs-4 col-xs-offset-2">
+                            <button type="reset" class="btn btn-success btn-block">取消修改</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
