@@ -212,3 +212,15 @@ li.active{
     margin: 1px;
     text-align: center;
 }
+
+input.error { border: 1px solid red; }
+label.error {
+  background:#dcdcdc;
+  padding-left: 16px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  color: #EA5200;
+}
+label.checked {
+  background:#dcdcdc;
+}

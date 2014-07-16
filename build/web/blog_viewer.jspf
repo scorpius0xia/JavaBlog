@@ -17,8 +17,21 @@
 </div>
 <%
     int click = rs.getInt("bclick");
-    click ++;
+    String uname = rs.getString("username");
+    if (!uname.equals(username)) {
+        click++;
+    }
     blogsql = "update blog_content set bclick = " + click + " where bid = " + bid;
+    dop.execUpdate(blogsql);
+
+    blogsql = "select uclick from user_click where username = \"" + uname + "\"";
+    rs = dop.execQuery(blogsql);
+    rs.next();
+    click = rs.getInt("uclick");
+    if (!uname.equals(username)) {
+        click++;
+    }
+    blogsql = "update user_click set uclick =" + click +" where username = \"" + uname +"\"";
     dop.execUpdate(blogsql);
     dop.closeConnection();
 %>
@@ -27,13 +40,20 @@
         <div class="col-11 col-lg-11 col-xs-11 comment-group">
             <p>评论列表</p>
         </div>
-        <%for (int i = 0; i < 10; i++) {%>
+        <%
+            String cmtsql = "select * from blog_comment where bid = " + bid;
+            dop.openConnection();
+            rs = dop.execQuery(cmtsql);
+            int count = 0;
+            while (rs.next()) {
+                count++;
+        %>
         <div class="col-11 col-lg-11 col-xs-11 comment-item">
-            <p class="comment-tiltle">#41楼 2014-06-06 15:50 | StephenYang </p>
+            <p class="comment-tiltle">#<%=count%>楼 <%=rs.getString("cmdate")%> | <%=rs.getString("username")%> </p>
             <hr class="hr-special">
-            <p class="comment-content">受教了！这篇文章的作者很有心，不满足人云亦云。可以肯定的一点是，汉字的个数，如果算上日文和韩文里的，那确实是非常非常多的。所以3个字节的汉字应该是指常用汉字。</p>
+            <p class="comment-content"><%=rs.getString("cmcontent")%></p>
             <hr class="hr-special">
-            <p class="comment-footer">回复 支持</p>
+            <!--<p class="comment-footer">回复 支持</p>-->
 
         </div>
         <%}%>
@@ -43,10 +63,6 @@
                 <div class="Row">
                     <div class="col-12 col-lg-12 col-xs-12 ">
                         <script type="text/plain" id="myEditor" class="myEditor form-control comment-height"></script>
-                        <script type="text/javascript">
-                            var editorCom = UM.getEditor('myEditor');
-
-                        </script> 
                     </div>
                 </div>
                 <div class="col-12 col-lg-12 col-xs-12">
@@ -54,8 +70,20 @@
                         <div class="col-12 col-lg-12 col-xs-12 form-line">
                             <div class="comment-submit">
                                 <input type="hidden" name="action" value="comment_submit">
+                                <input type="hidden" name="bid" value="<%=bid%>">
+                                <input type="hidden" name="username" value="<%=username%>">
+                                <%if (!username.equals("")) {%>
+                                <script type="text/javascript">
+                                    var editorCom = UM.getEditor('myEditor');
+                                </script> 
                                 <button class="btn btn-success" type="submit">提交</button>
                                 <button class="btn btn-default" type="reset" onclick="javascript:editorCom.execCommand('cleardoc');">取消</button>
+                                <%} else {%>
+                                <script type="text/javascript">
+                                    var editorCom = UM.getEditor('myEditor', {readonly: true});
+                                </script> 
+                                <p>登录后才能发表评论！</p>
+                                <%}%>
                             </div>
                         </div>
                     </div>
@@ -64,3 +92,5 @@
         </div>
     </div>
 </div>
+
+<%dop.closeConnection();%>

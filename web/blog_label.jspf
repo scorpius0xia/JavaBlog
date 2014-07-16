@@ -1,0 +1,20 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+    menutitle = "热门标签";
+    String curStr;
+    curStr = "select bkind from blog_content order by bclick desc";
+
+    dop.openConnection();
+    rs = dop.execQuery(curStr);
+%>
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="list-group">
+        <li class="list-group-item active"><%=menutitle%></li>
+            <%while (rs.next()) {%>
+        <a href="#" class="list-group-item"><%=rs.getString("bkind")%></a>
+        <%}%>
+    </div>
+</div><!--/span-->
+<%dop.closeConnection();%>
+

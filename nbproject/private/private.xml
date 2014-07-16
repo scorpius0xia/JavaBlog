@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/jsp/imageUp.jsp</file>
             <file>file:/home/coolwind/NetBeansProjects/JavaBlog/src/java/com/coolwind/javablog/IndexServlet.java</file>
+            <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/blog_content.jspf</file>
+            <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/index.jsp</file>
             <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/blog_listview.jspf</file>
+            <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/first_listview.jspf</file>
+            <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/blog_manage.jspf</file>
             <file>file:/home/coolwind/NetBeansProjects/JavaBlog/web/blog_viewer.jspf</file>
         </group>
     </open-files>

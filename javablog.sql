@@ -7,11 +7,12 @@ e_mail text not null
 
 create table if not exists user_detail(
 did int primary key auto_increment,
-uid int unique,
+username varchar(20) unique,
 dsex int,
 dbirth date,
+demail text,
 dpage text,
-foreign key(uid) references user(uid)
+foreign key(username) references user(username)
 );
 
 create table if not exists blog_content(
@@ -34,5 +35,11 @@ cmcontent text,
 cmreply text,
 cmdate datetime,
 foreign key(username) references user(username),
-foreign key(bid) references blog_content(bid)
+foreign key(bid) references blog_content(bid) on delete cascade
+);
+
+create table if not exists user_click(
+username varchar(40) primary key,
+uclick int,
+foreign key(username) references user(username)
 );

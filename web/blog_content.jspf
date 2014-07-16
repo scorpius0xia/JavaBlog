@@ -7,6 +7,6 @@
             <%@include file="blog_listview.jspf" %>
         </div><!--/span-->
         
-        <%@include file="blog_menu.jspf" %>
+        <%@include file="blog_label.jspf" %>
     </div><!--/row-->
 </div>

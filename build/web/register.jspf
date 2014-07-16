@@ -1,28 +1,66 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<script type="text/javascript">
+    jQuery.extend(jQuery.validator.messages, {
+        required: "必选字段",
+        remote: "该用户名已被占用",
+        email: "请输入正确格式的电子邮件",
+        url: "请输入合法的网址",
+        date: "请输入合法的日期",
+        dateISO: "请输入合法的日期 (ISO).",
+        number: "请输入合法的数字",
+        digits: "只能输入整数",
+        creditcard: "请输入合法的信用卡号",
+        equalTo: "请再次输入相同的值",
+        accept: "请输入拥有合法后缀名的字符串",
+        maxlength: jQuery.validator.format("请输入一个 长度最多是 {0} 的字符串"),
+        minlength: jQuery.validator.format("请输入一个 长度最少是 {0} 的字符串"),
+        rangelength: jQuery.validator.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
+        range: jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
+        max: jQuery.validator.format("请输入一个最大为{0} 的值"),
+        min: jQuery.validator.format("请输入一个最小为{0} 的值"),
+        alphanumeric: jQuery.validator.format("只能输入数字、字母、下划线")
+    });
+    $().ready(
+            function() {
+                $("#register_from").validate({
+                    //errorLabelContainer: $("#register_from div.error"),
+                    errorPlacement: function(error, element) {
+                        if (element.is(":radio"))
+                            error.appendTo(element.parent());
+                        else if (element.is(":checkbox"))
+                            error.appendTo(element.parent());
+                        else
+                            error.appendTo(element.parent());
+                    }
+                });
+            }
+    );
+</script>
 <div class="container register-body">
     <div class="row row-offcanvas row-offcanvas-right ">
         <div class="col-xs-7 col-sm-4 form-register">
-            <form class="form-group" action="Index" method="post">
+            <form class="form-group" action="Index" method="post" id="register_from">
                 <div class="Row ">
                     <div class="col-11 col-lg-11 col-xs-11 form-register-item">
                         <label for="username">用户名:</label>
-                        <input name="username" id="username" type="text" class="form-control">
+                        <input name="username" id="username" type="text" class="form-control required alphanumeric" minlength="3" maxlength="15" required>
                     </div>
                     <div class="col-11 col-lg-11 col-xs-11 form-register-item">
                         <label for="password">密码:</label>
-                        <input name="password" id="password" type="text" class="form-control">
+                        <input name="password" id="password" type="password" class="form-control required" required>
                     </div>
                     <div class="col-11 col-lg-11 col-xs-11 form-register-item">
                         <label for="repeat">密码确认:</label>
-                        <input name="repeat" id="repeat" type="text" class="form-control">
+                        <input name="repeat" id="repeat" type="password" class="form-control required" equalTo="#password" required>
+                        <div class="status"></div>
                     </div>
                     <div class="col-11 col-lg-11 col-xs-11 form-register-item">
                         <label for="email">电子邮箱：</label>
-                        <input name="email" id="email" type="text" class="form-control">
+                        <input name="email" id="email" type="text" class="form-control required email" required>
                     </div>
-                     <div class="col-12 col-lg-12 col-xs-12 form-register-item">
-                         <input name="agree" id="agree" type="checkbox">我已阅读并同意<a href="">《Java Blog的服务条款》</a></input>
+                    <div class="col-12 col-lg-12 col-xs-12 form-register-item">
+                        <input name="agree" id="agree" type="checkbox" required>我已阅读并同意<a href="">《Java Blog的服务条款》</a></input>
                     </div>
                     <input type="hidden" name="action" value="registration_detail">
                     <div class="col-11 col-lg-11 col-xs-11 form-register-item">
@@ -32,7 +70,7 @@
             </form>
         </div>
         <div class="col-xs-11 col-sm-8 image-item">
-                <img src="image/robot.jpg">
+            <img src="image/robot.jpg">
         </div>
     </div>
 

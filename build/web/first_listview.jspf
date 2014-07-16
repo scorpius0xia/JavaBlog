@@ -1,14 +1,40 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.coolwind.javablog.util.DatabaseOperator"%>
 <%@ page pageEncoding="UTF-8" %>
+<%
+    String xsql = "select username from user_click order by uclick desc limit 12";
+    dop.openConnection();
+    rs = dop.execQuery(xsql);
+%>
 <div class="row list-border list-content">
-    <%for (int i = 0; i < 9; i ++){%>
-    <div class="col-6 col-sm-6 col-lg-4">
-        <h2>coowind</h2>
-        <li>复仇者之死</li>
-        <li>寒风剑海的忧郁</li>
-        <li>寒风剑海的消失</li>
-        <li>寒风剑海的困惑</ii>
-        <p><a class="btn btn-default" href="#" role="button">查看更多 &raquo;</a></p>
+    <%while (rs.next()) {%>
+    
+    <div class="col-6 col-md-6">
+        <h2><%=rs.getString("username")%></h2>
+        <%
+            DatabaseOperator tmpdop = new DatabaseOperator();
+            tmpdop.openConnection();
+            String tmpStr = "select * from blog_content where username = \""
+                    + rs.getString("username") + "\" limit 5";
+            ResultSet tmprs = tmpdop.execQuery(tmpStr);
+            while (tmprs.next()) {
+        %>
+        <form name="hot_<%=tmprs.getString("bid")%>" action="Index" method="post">
+            <input type="hidden" name="action" value="view_blog">
+            <input type="hidden" name="view_blog" value="<%=tmprs.getString("bid")%>" >
+        </form>
+        <li><a href="javascript:hot_<%=tmprs.getString("bid")%>.submit()"><%=tmprs.getString("btitle")%></a></li>
+            <%}%>
+            <%tmpdop.closeConnection();%>
+
+        <form name="more_<%=rs.getString("username")%>" action="Index" method="post">
+            <input type="hidden" name="action" value="view_more">
+            <input type="hidden" name="view_more" value="<%=rs.getString("username")%>" >
+        </form>
+        <p><a class="btn btn-default" href="javascript:more_<%=rs.getString("username")%>.submit()" role="button">查看更多 &raquo;</a></p>
     </div><!--/span-->
+    
     <%}%>
 </div><!--/row-->
+<%dop.closeConnection();%>

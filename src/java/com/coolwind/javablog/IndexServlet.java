@@ -5,9 +5,12 @@ package com.coolwind.javablog;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.coolwind.javablog.bean.BlogComment;
 import com.coolwind.javablog.bean.BlogSubmit;
+import com.coolwind.javablog.bean.BlogUpdate;
 import com.coolwind.javablog.bean.LoginBean;
 import com.coolwind.javablog.bean.RegistrationBean;
+import com.coolwind.javablog.util.DatabaseOperator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -77,7 +80,7 @@ public class IndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        request. setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
 
         if (action.equals("hot_top")) {
@@ -115,12 +118,21 @@ public class IndexServlet extends HttpServlet {
             login(request, response);
         } else if (action.equals("registration_detail")) {
             this.register(request, response);
-        } else if (action.equals("blog_submit")){
+        } else if (action.equals("blog_submit")) {
             this.BlogSubmit(request, response);
-        } else if (action.equals("view_blog")){
+        } else if (action.equals("view_blog")) {
             System.out.println("blog_view");
             this.BlogView(request, response);
-            
+        } else if (action.equals("comment_submit")) {
+            this.BlogComment(request, response);
+        } else if (action.equals("delete_blog")){
+            this.DeleteBlog(request, response);
+        } else if (action.equals("edit_blog")){
+            this.EditBlog(request, response);
+        } else if (action.equals("save_submit")){
+            this.SaveBlog(request, response);
+        } else if (action.equals("view_more")){
+            this.ViewMore(request, response);
         }
     }
 
@@ -141,7 +153,7 @@ public class IndexServlet extends HttpServlet {
         if (loginData.checkValid()) {
             Cookie usrCookie = new Cookie("username", loginData.getUsername());
             Cookie pwdCookie = new Cookie("password", loginData.getPassword());
-            Cookie uidCookie = new Cookie("uid",loginData.getUid());
+            Cookie uidCookie = new Cookie("uid", loginData.getUid());
             usrCookie.setMaxAge(30 * 24 * 3600);
             pwdCookie.setMaxAge(30 * 24 * 3600);
             uidCookie.setMaxAge(30 * 24 * 3600);
@@ -218,7 +230,7 @@ public class IndexServlet extends HttpServlet {
         rb.insertInto();
         this.toMainpage(request, response);
     }
-    
+
     public void BlogView(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int code = 7;
@@ -238,17 +250,90 @@ public class IndexServlet extends HttpServlet {
         System.out.println(title);
         String username = null;
         Cookie[] cookies = request.getCookies();
-        for(Cookie tmp: cookies){
-            if(tmp.getName().equals("username")){
+        for (Cookie tmp : cookies) {
+            if (tmp.getName().equals("username")) {
+                username = tmp.getValue();
+                break;
+            }
+        }
+
+        BlogSubmit bs = new BlogSubmit(title, label, previlige, content, username);
+        bs.insertInto();
+
+        //跳转到查看日志
+        this.toMainpage(request, response);
+    }
+
+    public void BlogComment(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String bid = request.getParameter("bid");
+        BlogComment bc = new BlogComment(
+                request.getParameter("username"),
+                bid,
+                request.getParameter("editorValue")
+        );
+
+        bc.insertInto();
+
+        int code = 7;
+        request.setAttribute("ActionCode", code);
+        request.setAttribute("Blogid", bid);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    public void DeleteBlog(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String bid = request.getParameter("delete_blog");
+        System.out.println(bid);
+        String Sql = "delete from blog_content where bid = " + bid;
+        DatabaseOperator dop = new DatabaseOperator();
+        dop.openConnection();
+        int rs = dop.execUpdate(Sql);
+        dop.closeConnection();
+        
+        this.toBlogManage(request, response);
+    }
+    
+    public void EditBlog(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String bid = request.getParameter("edit_blog");
+        int code = 9;
+        request.setAttribute("ActionCode", code);
+        request.setAttribute("editblogid", bid);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    
+    public void SaveBlog(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String bid = request.getParameter("ebid");
+        String label = request.getParameter("label");
+        String previlige = request.getParameter("previlige");
+        String content = request.getParameter("editorValue");
+        String username = null;
+        Cookie[] cookies = request.getCookies();
+        for (Cookie tmp : cookies) {
+            if (tmp.getName().equals("username")) {
                 username = tmp.getValue();
                 break;
             }
         }
         
-        BlogSubmit bs = new BlogSubmit(title,label,previlige,content,username);
-        bs.insertInto();
+        BlogUpdate bu = new BlogUpdate(username,label,content,previlige,bid);
         
-        //跳转到查看日志
-        this.toMainpage(request, response);
+        bu.update();
+
+        int code = 7;
+        request.setAttribute("ActionCode", code);
+        request.setAttribute("Blogid", bid);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    
+    public void ViewMore(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String viewmore = request.getParameter("view_more");
+        int code = 10;
+        request.setAttribute("ActionCode", code);
+        request.setAttribute("xuname", viewmore);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

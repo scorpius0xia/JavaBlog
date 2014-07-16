@@ -63,6 +63,7 @@
         <script type="text/javascript" src="lang/zh-cn/zh-cn.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <script type="text/javascript" src="js/additional-methods.min.js"></script>
+        <script type="text/javascript" src="js/jquery.metadata.js"></script>
         <title>Welcome to Java Blog!</title>
     </head>
     <body>
@@ -111,6 +112,10 @@
         <%@include file="blog_viewer.jspf"%>
         <%} else if (currentpage == 8) {%>
         <%@include file="blog_manage.jspf" %>
+        <%} else if (currentpage == 9){%>
+        <%@include file="blog_edit.jspf" %>
+        <%} else if (currentpage == 10){%>
+        <%@include file="blog_listview.jspf" %>
         <%}%>
 
         <%@include file="link.jspf" %>

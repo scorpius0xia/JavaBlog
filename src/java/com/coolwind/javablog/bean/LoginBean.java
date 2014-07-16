@@ -55,13 +55,14 @@ public class LoginBean {
         boolean ok = false;
         try {
             while(rs.next()){
-                this.uid = rs.getString(1);
+                this.uid = rs.getString("uid");
             }
             
             if(uid != null)
                 ok = true;
             else
                 ok = false;
+            System.out.println("Check:" + ok);
         } catch (SQLException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
             ok = false;

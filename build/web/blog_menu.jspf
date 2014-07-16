@@ -2,24 +2,23 @@
 
 <%@ page pageEncoding="UTF-8" %>
 <%
-    if (currentpage == 0) {
-        menutitle = "热门博文";
-    } else {
-        menutitle = "热门标签";
-    }
+    menutitle = "热门博文";
+    String curStr;
+    curStr = "select * from blog_content order by bclick desc";
+
+    dop.openConnection();
+    rs = dop.execQuery(curStr);
 %>
 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
     <div class="list-group">
         <li class="list-group-item active"><%=menutitle%></li>
-        <a href="javascript:to_top1.submit()" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
+            <%while (rs.next()) {%>
+        <form name="top_<%=rs.getString("bid")%>" action="Index" method="post">
+            <input type="hidden" name="action" value="view_blog">
+            <input type="hidden" name="view_blog" value="<%=rs.getString("bid")%>" >
+        </form>
+        <a href="javascript:top_<%=rs.getString("bid")%>.submit()" class="list-group-item"><%=rs.getString("btitle")%></a>
+        <%}%>
     </div>
 </div><!--/span-->
+<%dop.closeConnection();%>

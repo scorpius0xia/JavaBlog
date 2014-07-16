@@ -1,12 +1,17 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<%@page import="java.lang.String" %>
 <%
-   // DatabaseOperator dop = new DatabaseOperator();
-        String blogsql = null;
-        if(currentpage == 2)
-            blogsql = "select * from blog_content where username = \"" + username+"\"";
-        else
-            blogsql = "select * from blog_content where bprivilege = 0";
+    // DatabaseOperator dop = new DatabaseOperator();
+    String xuname = (String)request.getAttribute("xuname");
+    String blogsql = null;
+    if (currentpage == 2) {
+        blogsql = "select * from blog_content where username = \"" + username + "\"";
+    }else if(currentpage == 10){
+        blogsql = "select * from blog_content where username = \"" + xuname +"\"";
+    } else {
+        blogsql = "select * from blog_content where bprivilege = 0";
+    }
 
     dop.openConnection();
     rs = dop.execQuery(blogsql);
@@ -20,15 +25,23 @@
     <div class="col-12 col-xs-12 col-md-12 col-lg-12">
         <h2><%=rs.getString("btitle")%></h2>
         <div>日期：<%=rs.getString("bdate")%> 点击：<%=rs.getString("bclick")%> 作者：<%=rs.getString("username")%></div>
-        <p><%=(rs.getString("bcontent")).replaceAll("<[^>]*>","")%></p>
+        <%
+        String ss = (rs.getString("bcontent")).replaceAll("<[^>]*>","");
+        if(ss.length() > 200){
+            ss = ss.substring(0, 200);
+        }else{
+            ss = ss.substring(0, ss.length());
+        }
+        %>
+        <p><%=ss%></p>
         <p><a class="btn btn-default" href="javascript:blog_<%=rs.getString("bid")%>.submit()" role="button">查看详情 &raquo;</a></p>
     </div>
     <%}%>
     <%dop.closeConnection();%>
-    
-    <div class="col-12 col-xs-12 col-md-12 col-lg-12">
+
+   <!-- <div class="col-12 col-xs-12 col-md-12 col-lg-12">
         <div class="col-6 col-xs-6 col-xs-offset-3 col-md-6 col-md-3 col-lg-6 col-lg-offset-6">
             <%@include file="pageinditor.jspf" %>
         </div>
-    </div>
+    </div>-->
 </div>

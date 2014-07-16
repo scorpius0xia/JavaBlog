@@ -20,6 +20,7 @@ public class RegistrationBean {
     
     private String usrStr;
     private String udStr;
+    private String ckStr;
 
     public RegistrationBean() {
 
@@ -38,7 +39,10 @@ public class RegistrationBean {
                 + this.password + "\",\""
                 + this.email + "\")";
         
-        this.udStr = "insert into user_detail values()";
+        this.udStr = "insert into user_detail values(NULL,\"" 
+                + this.username+"\",0,NULL,\""+this.email+ "\",NULL"+")";
+        
+        this.ckStr = "insert into user_click values(\"" + this.username +"\",0)";
     }
 
     public String getUsername() {
@@ -69,6 +73,8 @@ public class RegistrationBean {
         DatabaseOperator dop = new DatabaseOperator();
         dop.openConnection();
         int rs = dop.execUpdate(usrStr);
+        rs = dop.execUpdate(ckStr);
+        rs = dop.execUpdate(udStr);
         dop.closeConnection();
     }
 }
